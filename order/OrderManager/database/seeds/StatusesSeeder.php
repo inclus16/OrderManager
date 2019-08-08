@@ -15,7 +15,7 @@ class StatusesSeeder extends Seeder
         try {
             $statusNames = '(\'новая\'), (\'в работе\'), (\'решена\'), (\'отклонена\')';
             \Illuminate\Support\Facades\DB::insert('INSERT INTO statuses(name) VALUES ' . $statusNames);
-        }catch (\Doctrine\DBAL\Exception\UniqueConstraintViolationException $exception){
+        }catch (Illuminate\Database\QueryException $exception){
             dump("Already seeded");
         }
     }

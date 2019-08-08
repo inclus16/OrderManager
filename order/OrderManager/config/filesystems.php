@@ -63,6 +63,12 @@ return [
             'bucket' => env('AWS_BUCKET'),
             'url' => env('AWS_URL'),
         ],
+        'mapping' => [
+            'driver' => 'local',
+            'root' => public_path('mapping'),
+            'url' => env('APP_URL') . '/mapping',
+            'visibility' => 'public'
+        ]
 
     ],
 

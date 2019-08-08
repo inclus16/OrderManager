@@ -8,6 +8,7 @@ services:
       - php
     volumes:
       - ./docker/nginx/conf.d/default.nginx:/etc/nginx/conf.d/default.conf
+      - ./order/OrderManager/public/:/var/www/html/public/
     ports:
       - 80:80
 

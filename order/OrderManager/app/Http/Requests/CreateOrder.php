@@ -21,7 +21,7 @@ class CreateOrder extends FormRequest
         return true;
     }
 
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->validated()['description'];
     }
@@ -34,7 +34,7 @@ class CreateOrder extends FormRequest
     public function rules()
     {
         return [
-            'description'=>'required|string'
+            'description' => 'required|string'
         ];
     }
 
@@ -42,7 +42,7 @@ class CreateOrder extends FormRequest
     {
         return [
             'description.required' => 'Введите описание заявки',
-            'description.string'  => 'Описание должно быть строкой',
+            'description.string' => 'Описание должно быть строкой',
         ];
     }
 }

@@ -17,7 +17,9 @@ class OrdersController extends Controller
      */
     public function index() : JsonResponse
     {
-        return Response::json(Order::all()->load('status'));
+        return Response::json(Order::all()
+            ->load('status')
+            ->load('comments'));
     }
 
     /**
@@ -37,7 +39,9 @@ class OrdersController extends Controller
     {
         $model = Order::initModel($createOrder->getDescription());
         $model->save();
-        return Response::json($model->load('status'));
+        return Response::json($model
+            ->load('status')
+            ->load('comments'),201);
 
     }
 
@@ -46,7 +50,9 @@ class OrdersController extends Controller
      */
     public function show(Order $order) : JsonResponse
     {
-        return Response::json($order->load('status'));
+        return Response::json($order
+            ->load('status')
+            ->load('comments'));
     }
 
     /**
@@ -66,9 +72,10 @@ class OrdersController extends Controller
      */
     public function update(UpdateOrderStatus $udpateOrderStatus, Order $order) : JsonResponse
     {
-        $order->status_id=$udpateOrderStatus->getStatusId();
-        $order->save();
-        return Response::json($order->load('status'));
+        $order->setStatusById($udpateOrderStatus->getStatusId())->save();
+        return Response::json($order
+            ->load('status')
+            ->load('comments'));
     }
 
     /**

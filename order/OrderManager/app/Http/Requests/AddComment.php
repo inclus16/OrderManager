@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-use App\Models\Status;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateOrderStatus extends FormRequest
+class AddComment extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,11 +21,10 @@ class UpdateOrderStatus extends FormRequest
         return true;
     }
 
-    public function getStatusId(): int
+    public function getCommentContent(): string
     {
-        return $this->validated()['status_id'];
+        return $this->validated()['content'];
     }
-
 
     /**
      * Get the validation rules that apply to the request.
@@ -36,15 +34,15 @@ class UpdateOrderStatus extends FormRequest
     public function rules()
     {
         return [
-            'status_id' => 'required|exists:statuses,id'
+            'content' => 'required|string'
         ];
     }
 
     public function messages()
     {
         return [
-            'status_id.required' => 'Укажите id статуса',
-            'status_id.exists' => 'Статус не найден'
+            'content.required' => 'Укажите текс комментария',
+            'content.string' => 'Текс должен быть строкой'
         ];
     }
 }
