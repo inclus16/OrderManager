@@ -11,5 +11,4 @@
 |
 */
 
-Route::resource('/orders', 'OrdersController')->only('index', 'store', 'show', 'update', 'destroy');
-Route::resource('/orders/{order}/comments', 'CommentsController')->only('store');
+

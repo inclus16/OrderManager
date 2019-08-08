@@ -12,7 +12,11 @@ class StatusesSeeder extends Seeder
      */
     public function run()
     {
-        $statusNames = '(\'новая\'), (\'в работе\'), (\'решена\'), (\'отклонена\')';
-        \Illuminate\Support\Facades\DB::insert('INSERT INTO statuses(name) VALUES '.$statusNames);
+        try {
+            $statusNames = '(\'новая\'), (\'в работе\'), (\'решена\'), (\'отклонена\')';
+            \Illuminate\Support\Facades\DB::insert('INSERT INTO statuses(name) VALUES ' . $statusNames);
+        }catch (\Doctrine\DBAL\Exception\UniqueConstraintViolationException $exception){
+            dump("Already seeded");
+        }
     }
 }

@@ -13,6 +13,5 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::resource('/orders', 'OrdersController')->only('index', 'store', 'show', 'update', 'destroy');
+Route::resource('/orders/{order}/comments', 'CommentsController')->only('store');
