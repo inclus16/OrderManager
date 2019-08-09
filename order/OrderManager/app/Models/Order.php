@@ -38,11 +38,11 @@ class Order extends Model
 
     private function setCommentNumber(Comment $comment): Comment
     {
-        $existingComments = $this->comments()->get();
+        $existingComments = $this->comments;
         if ($existingComments->isEmpty()){
             return $comment->setNumber(1);
         }
-        return $comment->setNumber($existingComments->last()->number);
+        return $comment->setNumber($existingComments->last()->number+1);
     }
 
     public function comments()

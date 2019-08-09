@@ -55,7 +55,7 @@ RUN apk --update add --no-cache \
 RUN docker-php-ext-install pdo pdo_pgsql
 
 #need for laravel-doctrine/migrations
-RUN apk add git
+#RUN apk add git
 
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
